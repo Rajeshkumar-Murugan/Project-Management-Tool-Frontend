@@ -11,8 +11,8 @@ function Navmenu() {
 <div className="d-flex justify-content-between">
     <div >
         
-<img src='https://i.pinimg.com/originals/00/6b/27/006b2787627b0b67bb91d9716d6e5058.gif' className="img-fluid" style={{height:"100px"}}>
- <h3>Project management Tool</h3> </img>
+        <img src='https://i.pinimg.com/originals/00/6b/27/006b2787627b0b67bb91d9716d6e5058.gif' className="img-fluid" style={{height:"100px"}}></img>
+ <h3>Project management Tool</h3>
  </div><div className="d-flex align-items-center">
  <div className="d-flex align-items-end flex-column bd-highlight mb-3" style={{height: "150px"}}>
   <div className="p-2 bd-highlight"><img src={user.data.ProfileImage} alt={user.data.name} style={{width:'90px', height:"90px"}}/></div>

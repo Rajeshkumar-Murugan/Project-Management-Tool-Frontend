@@ -10,7 +10,7 @@ function About() {
     <div>
       <Navmenu/>
         <h3>ABOUT</h3>
-        <div className="mx-auto align-self-center" style={{width: '400px'}}>
+        <div className="mx-auto align-self-center" style={{width: '400px', textAlign:center}}>
         <img src={user.data.ProfileImage} style={{width:'300px', height:"300px"}}/>
         <p><b>Full Name: </b>{user.data.name}</p>
         <p><b>Email ID: </b>{user.data.email}</p>
