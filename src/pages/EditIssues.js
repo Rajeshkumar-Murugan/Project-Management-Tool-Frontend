@@ -166,27 +166,8 @@ let getLableData = async()=>{
                   </select>
           
           
-          </div>
-          <div className="col formfields">
-          <label htmlFor="ProjectName" className="form-label" style={{ display: 'block' }}>
-    ProjectName
-      </label>            
-            <select
-        name="ProjectName"
-        id="ProjectName"
-        className="form-control" placeholder='Select ProjectName'
-        value={ProjectName}
-        onChange={(e)=>setProjectName(e.target.value)}
-      ><option value="" label="Select option" />
-          { Projectdata.map((e,i)=>{
-             return<>
-             <option value= {e.ProjectName} label={e.ProjectName} />
-             </>})}   
-      </select>
-          </div>
-
+        </div>
           
-
           <div className="col formfields">
             <label htmlFor="Image_2" className="form-label">Milestone</label>
             <input type="text" value={Milestone} className="form-control" id="Image_2"onChange={(e)=>setMilestone(e.target.value)}/>
