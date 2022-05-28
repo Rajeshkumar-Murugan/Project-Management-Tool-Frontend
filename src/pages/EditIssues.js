@@ -111,7 +111,7 @@ let getLableData = async()=>{
 
   return <div >
     <Navmenu/>
-    <h3 style={{ background:" #ffface"}}>Edit Model</h3>
+    <h3 style={{ background:" #ffface"}}>Edit Issues</h3>
     <div className='container-fluid' style={{background: "bisque"}}>
       <div className="row"> 
       <div className='col-9' style={{ background:" #ffface"}}>
@@ -135,9 +135,24 @@ let getLableData = async()=>{
         </div>     
         <div className='col'>
           <div className="col formfields">
-            <label htmlFor="Width" className="form-label">ProjectName</label>
-            <input type="text" value={ProjectName} className="form-control" id="Width" onChange={(e)=>setProjectName(e.target.value)}/>
+          <label htmlFor="ProjectName" className="form-label" style={{ display: 'block' }}>
+    ProjectName
+      </label>            
+            <select
+        name="ProjectName"
+        id="ProjectName"
+        className="form-control" placeholder='Select ProjectName'
+        value={ProjectName}
+        onChange={(e)=>setProjectName(e.target.value)}
+      ><option value="" label="Select option" />
+          { Projectdata.map((e,i)=>{
+             return<>
+             <option value= {e.ProjectName} label={e.ProjectName} />
+             </>})}   
+      </select>
           </div>
+
+          
 
           <div className="col formfields">
             <label htmlFor="Image_2" className="form-label">Milestone</label>
