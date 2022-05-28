@@ -12,6 +12,7 @@ function Navmenu() {
     <div >
         
         <img src='https://i.pinimg.com/originals/00/6b/27/006b2787627b0b67bb91d9716d6e5058.gif' className="img-fluid" style={{height:"100px"}}></img>
+ <h3>Project management Tool</h3>
  </div><div className="d-flex align-items-center">
  <div className="d-flex align-items-end flex-column bd-highlight mb-3" style={{height: "150px"}}>
   <div className="p-2 bd-highlight"><img src={user.data.ProfileImage} alt={user.data.name} style={{width:'90px', height:"90px"}}/></div>
@@ -39,14 +40,8 @@ function Navmenu() {
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <a className="navbar-brand" href="#">PMT</a>
     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        {/* <li className="nav-item">
-        <Link to="/home">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-          </Link>
-        </li> */}
 
         <li className="nav-item">
         <Link to="/Project-list">
