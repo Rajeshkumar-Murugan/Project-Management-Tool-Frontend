@@ -11,3 +11,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#modelimg{   
+  height: 200px;
+}
+.modelAlign{
+  display: flex;
+  overflow-x: scroll;
+
+}
+h3{
+  text-align: center;
+  text-shadow: 2px;
+  text-decoration-color: blue;
+  text-transform: uppercase;
+
+}
+
+#labelbtn{
+  border-radius: 25px;
+  color: white;
+  padding:10px 20px 10px 20px ;
+  border: none;
+}
+
+.formfields {
+  height: 90px;
+}
+
+p{
+  
+font-family: 'Montserrat', sans-serif;
+}
+
+.scrolling{
+  overflow: scroll;
+}
