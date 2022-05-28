@@ -57,7 +57,7 @@ try {
     })
     history('/Label')
 } catch (error) {
-  alert("Error occured while updating the data please contact the developer")
+  alert("Error occured while updating please contact the developer")
       console.log(error)
 }
 
