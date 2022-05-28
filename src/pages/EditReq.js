@@ -143,9 +143,7 @@ let save=async ()=>{
         </div>     
         <div className='col'>
           <div className="col formfields">
-            {/* <label htmlFor="Width" className="form-label">ProjectName</label>
-            <input type="text" value={ProjectName} className="form-control" id="Width" onChange={(e)=>setProjectName(e.target.value)}/>
-           */}
+           
            <label htmlFor="ProjectName" className="form-label" style={{ display: 'block' }}>
                 ProjectName
                   </label>

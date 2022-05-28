@@ -17,6 +17,7 @@ function EditIssues() {
               getData()
               getLableData()
               getUserData()
+              getProjectData()
             }
     }, [])
 
@@ -31,6 +32,18 @@ function EditIssues() {
         console.log(error)
       }
     }
+
+    let getProjectData = async()=>{
+      try {     
+        let projectdata = await axios.get(env.API_URL)
+        let projectvalue = projectdata.data.data
+        setProjectdata(projectvalue)
+      } catch (error) {
+        alert("Error Occured while fetching the data please contact developer")
+        console.log(error)
+      }
+    }
+
 
   let history = useNavigate()
   let params = useParams()
@@ -134,6 +147,26 @@ let getLableData = async()=>{
 
         </div>     
         <div className='col'>
+        <div className="col formfields">
+           
+           <label htmlFor="ProjectName" className="form-label" style={{ display: 'block' }}>
+                ProjectName
+                  </label>
+            <select
+                    name="ProjectName"
+                    id="ProjectName"
+                    className="form-control" placeholder='Select ProjectName'
+                    value={ProjectName}
+                    onChange={(e)=>setProjectName(e.target.value)}
+                  ><option value="" label="Select option" />
+                      { Projectdata.map((e,i)=>{
+                        return<>
+                        <option value= {e.ProjectName} label={e.ProjectName} />
+                        </>})}   
+                  </select>
+          
+          
+          </div>
           <div className="col formfields">
           <label htmlFor="ProjectName" className="form-label" style={{ display: 'block' }}>
     ProjectName
