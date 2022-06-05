@@ -4,7 +4,8 @@ import {useFormik} from 'formik'
 import *as yup from 'yup'
 import {Link} from 'react-router-dom'
 import env from "react-dotenv";
-
+import styled from "styled-components";
+import { toast } from "react-toastify";
 
 function SignUp() {
     const [status,setStatus]  = useState( '' );
@@ -32,9 +33,8 @@ function SignUp() {
   // Adding data using axios
   let save = async(val)=>{
     try {
-      let res =  await axios.post(env.API_URL+'users/register',val)     
-      setStatus(res.data.message)   
-        
+      let res =  await axios.post(env.API_URL+'users/register',val)    
+      toast.success(res.data.message);        
     } catch (error) {
       alert("error occured please contact the developer")
       console.log(error)
@@ -42,80 +42,140 @@ function SignUp() {
   }
   return (
     <div>
-        <div className='container d-flex justify-content-center'>
-    <div className='row'>
-    <img src='https://cdn.dribbble.com/users/3645053/screenshots/10765315/10register_done2.gif' className="w-50 p-3 mx-auto"/>
-
-    <h4 className='text-center contactTitle'>Sign In</h4>
+      <FormContainer>
+    
          <form  onSubmit={formik.handleSubmit}>
-         <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">Name:</label>
+         <div className="brand">
+            <img src="https://icon-library.com/images/project-management-icon-png/project-management-icon-png-8.jpg" alt="logo" />
+
+            <h1>Sign Up</h1>
+          </div>
+          {formik.touched.name && formik.errors.name?
+          (<div style={{color:"red"}}>{formik.errors.name}</div>)
+          :formik.touched.email && formik.errors.email?
+          (<div style={{color:"red"}}>{formik.errors.email}</div>)
+          :formik.touched.phone && formik.errors.phone?
+          (<div style={{color:"red"}}>{formik.errors.phone}</div>)
+          :formik.touched.password && formik.errors.password?
+          (<div style={{color:"red"}}>{formik.errors.password}</div>):
+          null}
+
+
+        
+
+         <div className='d-flex'>
             <input id="name" name="name" type="text"
                   className="form-control" placeholder='Enter Name'
                   onChange={formik.handleChange}
                   value={formik.values.name}/>
-        {formik.touched.name && formik.errors.name?(<div style={{color:"red"}}>{formik.errors.name}</div>):null}
-            </div>
-
-            <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">Email ID:</label>
+            
+            &nbsp;&nbsp;
+            
             <input id="email" name="email" type="email"
                   className="form-control" placeholder='Enter Email'
                   onChange={formik.handleChange}
                   value={formik.values.email}/>
-        {formik.touched.email && formik.errors.email?(<div style={{color:"red"}}>{formik.errors.email}</div>):null}
-            </div>
+        </div>  
 
-            <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">Phone Number</label>
+        <div className='d-flex'>
             <input id="phone" name="phone" type="mobile"
                   className="form-control" placeholder='Enter phone'
                   onChange={formik.handleChange}
                   value={formik.values.phone}/>            
-        {formik.touched.phone && formik.errors.phone?(<div style={{color:"red"}}>{formik.errors.phone}</div>):null}
-            </div>
+            
 
-            <div className="mb-3">
-            <label htmlFor="message-text" className="col-form-label">Password:</label>
+            &nbsp;&nbsp;   
             <input id="password" name="password" type="text"
                   className="form-control" placeholder='Enter password'
                   onChange={formik.handleChange}
                   value={formik.values.password}/>
-        {formik.touched.password && formik.errors.password?(<div style={{color:"red"}}>{formik.errors.password}</div>):null}
-            </div>
-            <div className="mb-3">
-            <label htmlFor="ProfileImage" className="col-form-label">Profile Image URL</label>
+            
+         </div>
             <input id="ProfileImage" name="ProfileImage" type="text"
                   className="form-control" placeholder='Enter Image URL'
                   onChange={formik.handleChange}
                   value={formik.values.ProfileImage}/>
-        {formik.touched.ProfileImage && formik.errors.ProfileImage?(<div style={{color:"red"}}>{formik.errors.ProfileImage}</div>):null}
-            </div>
-
-            <p id="signup-status">
-            {status}
-            </p>
-            <div className="modal-footer">
-            
-            <div className="mx-auto">
-
-            
-            <button type='submit' className="btn btn-primary" >Sign Up</button>&nbsp;&nbsp;
-            <Link to="/">                      
-                 <button className="btn btn-secondary">Sign In</button>
-            </Link>
-            </div>
-
-            
-            
-        </div>
+ 
+        <button type="submit">Sign Up</button>
+        <span>
+          Already have an account? <Link to="/">Login</Link>
+        </span>
         </form>
-
-        </div>
-        </div>
-
+        </FormContainer>
     </div>
   )
 }
 
+const FormContainer = styled.div`  
+height: 100vh;
+
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  background-color: #131324;
+  .brand {
+    display: flex;
+    align-item: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+  img {
+    height: 5rem;
+  }
+  h1 {
+    color: white;
+    text-transform: uppercase;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #00000076;
+    border-radius: 2rem;
+    padding: 3rem 5rem;
+    input {
+      background-color: transparent;
+      padding: 1rem;
+      border: 0.1rem solid #4e0eff;
+      border-radius: 0.4rem;
+      color: white;
+      width: 100%;
+      font-size: 1rem;
+      &:focus {
+        border: 0.1 rem solid #997af0;
+        outline: none;
+      }
+    }
+    button {
+      background-color: #997af0;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: 0.5s ease-in-out;
+      &:hover {
+        background-color: #4e0eff;
+      }
+    }
+    span {
+      color: white;
+      text-transform: uppercase;
+
+      a {
+        color: #4a0eff;
+        text-transform: none;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+`;
 export default SignUp

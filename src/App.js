@@ -18,14 +18,15 @@ import GetIssueList from './pages/GetIssueList';
 import GetRequirement from './pages/GetRequirement';
 import EditReq from './pages/EditReq';
 import env from 'react-dotenv'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [user,setUser] = useState()
   const [project,setProject] = useState()
   console.log(env.API_URL)
   return (
-   
+   <>
       <Router>
           <div>  
                      
@@ -53,8 +54,8 @@ function App() {
           </div>
       </Router>
       
-
-    
+<ToastContainer/>
+    </>
   );
 }
 
