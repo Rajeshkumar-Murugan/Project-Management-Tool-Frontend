@@ -40,8 +40,9 @@ function SignIn() {
   let loggedin = async (val) => {
     try {
       let res = await axios.post(env.API_URL + "users/login", val);
-      if (res) {
-       
+      console.log(res.data)
+      
+      if (res) {      
         if (res.data.message === "Login successfully") {
           const user = res.data;
           toast.success(res.data.message);
@@ -60,7 +61,13 @@ function SignIn() {
           setPhone(res.data.data.phone);
           history("/Project-list");
         } 
-      } else {
+        else 
+      {
+        toast.error(res.data.message);
+      }
+      } 
+      else 
+      {
         toast.error(res.data.message);
       }
     } catch (error) {
