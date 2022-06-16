@@ -2,11 +2,13 @@ import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
+import Loading from './Loading';
 
 function GetLabel() {
     let [data,setData] =useState([])
     let Navigate = useNavigate()
-    
+    const [isloading, setisloading] = useState(true)
+
     //Fetching the data from mockapi starts
     useEffect(() => {
       getData()
@@ -19,6 +21,8 @@ function GetLabel() {
       
         let modeldata = await axios.get(env.API_URL+'Label')
         let modelvalue = modeldata.data.data
+        {modelvalue?setisloading(false):setisloading(true)}
+
       setData(modelvalue)
       } catch (error) {
         alert("Error Occured while fetching the data please contact developer")
@@ -42,7 +46,9 @@ function GetLabel() {
     }
   return (
   <div>
-    
+    {isloading ? 
+ <Loading/>
+:<div>
     <div class="table-responsive-md">
    
       <table class="table" >
@@ -86,7 +92,7 @@ function GetLabel() {
          </tbody>
          </table>
         </div>
-        
+   </div>}     
     </div> 
      
      

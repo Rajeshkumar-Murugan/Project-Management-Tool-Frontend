@@ -5,6 +5,7 @@ import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import axios from 'axios';
 import env from 'react-dotenv'
+import Loading from './Loading';
 
 function ProjectChart() {
     let history = useNavigate()
@@ -12,6 +13,7 @@ function ProjectChart() {
     let [ProjectName,setProjectName] =useState([])
     let [ProjectIssues,setProjectIssues] =useState([])
     let [ProjectReq,setProjectReq] =useState([])
+    const [isloading, setisloading] = useState(true)
 
   
     //Fetching the data from mockapi starts
@@ -27,6 +29,7 @@ function ProjectChart() {
         try {     
           let modeldata = await axios.get(env.API_URL)
           let modelvalue = modeldata.data.data
+          {modelvalue?setisloading(false):setisloading(true)}
 
           let GetReq = await axios.get(env.API_URL+'Get-Requirement')
           let Reqvalue = GetReq.data.data
@@ -103,12 +106,15 @@ const state = {
   return (
     <div>
         <Navmenu/>
+        {isloading ? 
+ <Loading/>
+: <div> 
 <h3>PROJECT CHART</h3>        
         <div className="d-flex justify-content-end">
         <button className='btn btn-secondary' onClick={()=>{history('/Project-list')}}>Cancel</button>
 
         </div>
-        
+  
         <Bar
           data={state}
           options={{
@@ -124,7 +130,8 @@ const state = {
           }}
           className="barchar"
         />
-        
+</div>
+}
     
         
       </div>

@@ -3,12 +3,14 @@ import {React,useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import env from 'react-dotenv'
+import Loading from './Loading';
 
 function ProjectList() {
     let [data,setData] =useState([])
     let [desc,setDesc] =useState('')
     let [Auth,setAuth] =useState('')
-    
+    const [isloading, setisloading] = useState(true)
+
     let Navigate = useNavigate()
  
     // const {user,setUser} = useContext(UserContext)
@@ -24,6 +26,8 @@ function ProjectList() {
       try {     
         let modeldata = await axios.get(env.API_URL)
         let modelvalue = modeldata.data.data
+        {modelvalue?setisloading(false):setisloading(true)}
+
       setData(modelvalue)
       } catch (error) {
         alert("Error Occured while fetching the data please contact developer")
@@ -43,9 +47,13 @@ function ProjectList() {
         console.log(error)
       }
     }
-  return (
+  return (<>
+  
     <div>
  <Navmenu/>
+ {isloading ? 
+ <Loading/>
+:<div>
         <h3>PROJECT LIST</h3>
         <div className="d-flex justify-content-end">
       
@@ -58,6 +66,7 @@ function ProjectList() {
              }}>Chart</button>
         </div>
         <br/>
+  
     <div className='container-fluid'>
       <div className='row'>
          {
@@ -123,8 +132,9 @@ function ProjectList() {
         </div>
         
     </div> 
+    </div>}
      </div>
-     
+     </>
    )
 }
 

@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import Navmenu from './Navmenu';
 import env from 'react-dotenv'
+import Loading from './Loading';
 
 function GetIssueList() {
     
@@ -11,7 +12,8 @@ function GetIssueList() {
     let [IssueTitle,setIssueTitle] =useState([])
     let [IssueDesc,setIssueDesc] =useState([])
     let [CreatedBy,setCreatedBy] =useState([])
-    
+    const [isloading, setisloading] = useState(true)
+
     let Navigate = useNavigate()
 
    
@@ -27,7 +29,8 @@ function GetIssueList() {
       try {     
         let modeldata = await axios.get(env.API_URL+'Issues')
         let modelvalue = modeldata.data.data
-        
+        {modelvalue?setisloading(false):setisloading(true)}
+
       setData(modelvalue)
       } catch (error) {
         alert("Error Occured while fetching the data please contact developer")
@@ -51,6 +54,9 @@ function GetIssueList() {
   
     <div>
       <Navmenu/>
+      {isloading ? 
+ <Loading/>
+:<div>
      <h3>
      Issue List
        </h3>
@@ -144,7 +150,7 @@ function GetIssueList() {
               </div>
             </div>
           </div>
-        
+        </div>}
         </div>
         
   

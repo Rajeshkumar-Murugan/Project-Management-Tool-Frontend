@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import Navmenu from './Navmenu';
 import env from 'react-dotenv'
+import Loading from './Loading';
 
 function GetRequirement() {
     let [data,setData] =useState([])
@@ -10,7 +11,8 @@ function GetRequirement() {
     let [ReqTitle,setReqTitle] =useState([])
     let [ReqDesc,setReqDesc] =useState([])
     let [CreatedBy,setCreatedBy] =useState([])
-    
+    const [isloading, setisloading] = useState(true)
+
     let Navigate = useNavigate()
 
      //Fetching the data from mockapi starts
@@ -23,6 +25,8 @@ let getData = async()=>{
     try {     
       let modeldata = await axios.get(env.API_URL+'Get-Requirement')
       let modelvalue = modeldata.data.data
+      {modelvalue?setisloading(false):setisloading(true)}
+
     setData(modelvalue)
     } catch (error) {
       alert("Error Occured while fetching the data please contact developer")
@@ -44,6 +48,9 @@ let getData = async()=>{
   return (
     <div>
         <Navmenu/>
+        {isloading ? 
+ <Loading/>
+:<div>
       <h3>Requirement List</h3>  
         <div className="d-flex justify-content-end">
       <button type="button" className="btn btn-success" onClick={()=>{
@@ -135,7 +142,7 @@ let getData = async()=>{
               </div>
             </div>
           </div>
-
+</div>}
         </div>
   )
 }
